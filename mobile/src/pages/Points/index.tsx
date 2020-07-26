@@ -43,6 +43,8 @@ const Points = () => {
 
     const navigation = useNavigation();
 
+
+    //Carrega os pontos encontrados
     useEffect(() => {
         api.get('points', {
             params: {
@@ -55,6 +57,8 @@ const Points = () => {
         })
     }, [selectedItems]);
 
+
+    //Carrega a localização do usuário
     useEffect(() => {
         async function loadPosition() {
             const { status } = await Location.requestPermissionsAsync();
@@ -75,12 +79,16 @@ const Points = () => {
         loadPosition();
     }, []);
 
+
+    //Carrega o Array de ítens
     useEffect(() => {
         api.get('items').then(response => {
             setItems(response.data);
         });
     }, []);
 
+
+    //Observa os ítens selecionados
     function handleSelectItem(id: number) {
         const alreadySelected = selectedItems.findIndex(item => item === id);
 
@@ -92,10 +100,14 @@ const Points = () => {
         }
     }
 
+
+    //Volta para a página anterior
     function handleNavigateBack() {
         navigation.goBack();
     }
 
+
+    //Abre a página Detail
     function handleNavigateToDetail(id: number) {
         navigation.navigate('Detail', { point_id: id });
     }

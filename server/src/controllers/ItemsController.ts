@@ -2,6 +2,8 @@ import knex from '../database/connection';
 import {Request, Response} from 'express';
 
 class ItemsController {
+
+    //Lista os ítens cadastrados
     async index(request:Request, response:Response) {
         const items = await knex('items').select('*');
     

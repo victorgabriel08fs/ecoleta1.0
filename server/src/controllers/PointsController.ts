@@ -2,6 +2,8 @@ import { Request, Response } from 'express'
 import knex from '../database/connection';
 
 class PointsController {
+
+    //Cadastra novo ponto de coleta
     async create(request: Request, response: Response) {
         const {
             name,
@@ -51,6 +53,7 @@ class PointsController {
         });
     }
 
+    //Lista os dados de um ponto de coleta específico
     async show(request: Request, response: Response) {
         const { id } = request.params;
 
@@ -68,6 +71,7 @@ class PointsController {
         return response.json({ point, items });
     }
 
+    //Lista os pontos de coleta de determinada cidade
     async index(request: Request, response: Response) {
 
         const { city, uf, items } = request.query;

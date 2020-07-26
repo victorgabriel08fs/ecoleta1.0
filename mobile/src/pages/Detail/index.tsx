@@ -34,20 +34,25 @@ const Detail = () => {
 
     const routeParams = route.params as Params;
 
+
+    //Carrega os dados do ponto selecionado
     useEffect(() => {
         api.get(`points/${routeParams.point_id}`).then(response => {
             setData(response.data);
         })
     }, []);
 
+    //Volta para a página anterior
     function handleNavigateBack() {
         navigation.goBack();
     }
 
+    //Abre uma conversa com o ponto de coleta selecionado via Whatsapp
     function handleWhatsapp() {
         Linking.openURL(`whatsapp://send?phone=${data.point.whatsapp}`);
     }
 
+    //Abre uma conversa com o ponto de coleta selecionado via Email
     function handleMail() {
         MailComposer.composeAsync({
             subject: 'Interesse na coleta de resíduos.',

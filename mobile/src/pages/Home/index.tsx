@@ -17,6 +17,8 @@ const Home = () => {
     const [uf, setUf] = useState('');
     const [city, setCity] = useState('');
 
+
+    //Passa a cidade e a UF como parâmetro para a próxima tela
     function handleNavigateToPoints() {
         navigation.navigate('Points', {
             uf,
